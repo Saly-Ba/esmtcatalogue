@@ -1,0 +1,45 @@
+{% extends 'catalogueESMT/base.html'%}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col s6 offset-s3 center per-form">
+        <h2>Inscription :</h2>
+        <form action="" method="POST">
+                {% csrf_token %}
+                    <div>
+                        <label>First Name :</label>
+                        <input type="text" name="first_name">
+                    </div>
+                    <div>
+                        <label>Last Name :</label>
+                        <input type="text" name="last_name">
+                    </div>
+                    <div>
+                        <label>Username :</label>
+                        <input type="text" name="username">
+                    </div>
+                    <div>
+                        <label>Email :</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div>
+                        <label>Password :</label>
+                        <input type="password" name="password">
+                    </div>
+                    <div>
+                        <label>Telephone :</label>
+                        <input type="number" name="telephone">
+                    </div>
+                
+                <a href="{% url 'catalogueESMT:acceuil'%}" class="btn-floating waves-effect waves-light btn per-back-blue">
+                    <i class="material-icons right">account_circle</i>
+                </a>
+                <button class="btn-floating waves-effect waves-light btn per-back-green" type="submit" name="action">
+                    <i class="material-icons">send</i>
+                </button>
+                
+        </form>
+    </div>
+</div>
+
+{% endblock %}
