@@ -1,0 +1,27 @@
+{% extends 'catalogueESMT/base.html'%}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col s6 offset-s3 center per-form">
+            <h2>Connexion :</h2>
+            <form action="{% url 'login'%}" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label>Login :</label>
+                    {{ form.username }}
+                </div>
+                <div>
+                    <label>Password :</label>
+                    {{ form.password }}
+                </div>
+                <button class="btn waves-effect waves-light" type="submit">Se connecter
+                    <i class="material-icons right">send</i>
+                </button>
+                <a href="{% url 'catalogueESMT:inscription_participant'%}" class="btn waves-effect waves-light blue">S'inscrire
+                    <i class="material-icons right">create</i>
+                </a>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

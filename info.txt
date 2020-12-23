@@ -1,0 +1,13 @@
+//** Catalogue des formations de l'esmt **//
+--------------------------------------------
+## Liste des utilisateurs :
+--------------------------
+# Gestionnaire :
+---------------
+username : Gestionnaire01
+password : gestionnaire@test
+
+# Administrateur :
+-----------------
+username : admin
+password : passer
