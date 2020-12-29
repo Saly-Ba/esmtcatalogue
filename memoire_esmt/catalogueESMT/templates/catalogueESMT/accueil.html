@@ -1,0 +1,86 @@
+{% extends 'catalogueESMT/base.html'%}
+{% load static %}
+{% block navbar %}
+  {% if user %}
+    <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'catalogueESMT:logout'%}" class="btn-large waves-effect waves-light button-per">Se deconnecter</a></li>
+    </ul>
+  {% else %}
+     <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'catalogueESMT:linscription'%}">S'inscrire</a></li>
+        <li><a href="{% url 'catalogueESMT:login'%}" class="btn-large waves-effect waves-light button-per">Se connecter</a></li>
+    </ul>
+  {% endif %}
+{% endblock %}
+{% block content %}
+    <div id="index-banner" class="parallax-container">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <br><br>
+          <h1 class="header center forma-logo"><span class="per-text-blue">Formation</span><span class="per-text-green">ESMT</span></h1>
+          <div class="row center">
+            <h5 class="header col s12 white-text">La plateforme pour l'amélioration de vos compétences!</h5>
+          </div>
+          <div class="row center">
+            <a href="#" class="btn-large waves-effect waves-light button-per">Commencer</a>
+          </div>
+          <br><br>
+  
+        </div>
+      </div>
+      <div class="parallax"><img  src="{% static 'ressource/estm-institutionnel.jpg'%}" alt="Unsplashed formation"></div>
+    </div>
+  
+  
+    <div class="container">
+      <div class="section">
+  
+        <!--   Icon Section   -->
+        <div class="row">
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center per-text-green"><i class="material-icons">explore</i></h2>
+              <h5 class="center">Explorer tous les formations qu'on offre</h5>
+  
+              <p class="light">Dans notre plateforme, nous proposons différentes formations, alors n'hésitez pas à les explorer toutes.</p>
+            </div>
+          </div>
+  
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center per-text-blue"><i class="material-icons">account_circle</i></h2>
+              <h5 class="center">Créer un compte</h5>
+  
+              <p class="light">Accédez à tous les cours que vous souhaitez simplement en créant un compte. Alors allez-y et commencez maintenant.</p>
+            </div>
+          </div>
+  
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center per-text-green"><i class="material-icons">info</i></h2>
+              <h5 class="center">Infos faciles</h5>
+  
+              <p class="light">Obtenez toutes les informations dont vous avez besoin sur un cours ou comment le rejoindre en quelques clics. Alors ne perdez pas une minute et allez-y !!!</p>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+  
+    <div class="parallax-container valign-wrapper">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <div class="row center">
+            <div class="col s12 center">
+              <h3><i class="mdi-content-send white-text "></i></h3>
+              <h4>A propos de nous</h4>
+              <p class="left-align light">Dans le cadre de rendre les informations plus accessibles, nous allons vous présenter notre plateforme web dédié à la gestion du catalogue des formations de l’ESMT. Cette plateforme sera en charge de gérer toutes les informations relatives à une formation donnée. Elle donnera au participant la possibilité de s’inscrire en ligne et de voire les formations disponibles pour une période donnée.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="parallax"><img src="{% static 'ressource/formation3.jpg'%}" ></div>
+    </div>
+{% endblock %}

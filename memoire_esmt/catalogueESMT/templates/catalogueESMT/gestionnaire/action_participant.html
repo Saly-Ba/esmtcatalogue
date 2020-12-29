@@ -1,0 +1,25 @@
+{% extends 'catalogueESMT/base.html'%}
+{% load static %}
+{% block navbar %}
+    <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'catalogueESMT:logout'%}" class="btn-large waves-effect waves-light button-per">Se deconnecter</a></li>
+    </ul>
+{% endblock %}
+{% block content %}
+<ul class="collection">
+    <li class="collection-item avatar">
+        <a href="{% url 'catalogueESMT:info_user' %}">
+            <i class="medium material-icons circle green">list</i>
+        </a>
+        <span class="title">Lister</span>
+        <p>Listez tous les participants avec les formations qu'ils ont suivies</p>
+    </li>
+    <li class="collection-item avatar">
+        <a href="{% url 'catalogueESMT:info_user' %}">
+            <i class="medium material-icons circle red">delete</i>
+        </a>
+        <span class="title">Supprimer</span>
+        <p>supprimez des participants </p>
+    </li>
+</ul>
+{% endblock%}

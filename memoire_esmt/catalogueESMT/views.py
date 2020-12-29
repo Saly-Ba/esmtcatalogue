@@ -5,8 +5,12 @@ from .forms import ParticipantForm,AnimateurForm,GestionnaireForm,FormationForm,
 
 
 # General :
-def acceuil(request):
-    return render(request,"catalogueESMT/acceuil.html")
+def accueil(request):
+    if 'pk' in request.session:
+        user = User.objects.get(pk=request.session['pk'])
+    else :
+        user = None
+    return render(request,"catalogueESMT/accueil.html",{'user':user})
 
 def login(request):
     if request.method == "POST":
@@ -27,7 +31,7 @@ def logout(request):
         del request.session['pk']
     except KeyError:
         pass
-    return redirect('catalogueESMT:acceuil')
+    return redirect('catalogueESMT:accueil')
 
 #Participant Actions :
 def inscription_participant(request):
@@ -35,7 +39,7 @@ def inscription_participant(request):
         form = ParticipantForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('catalogueESMT:acceuil')
+            return redirect('catalogueESMT:accueil')
     else:
         form = ParticipantForm()
     return render(request,'catalogueESMT/participant/inscriptionParticipant.html', {'form' : form})
@@ -43,6 +47,15 @@ def inscription_participant(request):
 def espace_participant(request):
     participant = User.objects.get(pk=request.session['pk'])
     return render(request,'catalogueESMT/participant/espace_participant.html',{'participant':participant})
+
+def afficher_info_user(request):
+    if not('pk' in request.session):
+        return redirect('catalogueESMT:login')
+    else:
+        parti = User.objects.get(pk=request.session['pk'])
+        if not (parti.user_type == 3) :
+            return redirect('catalogueESMT:login')
+    return render(request,'catalogueESMT/participant/afficher_info_user.html',{'parti': parti})
 
 #Animateurs Actions :
 def espace_animateur(request):
@@ -62,7 +75,38 @@ def ajout_animateur(request):
             form = AnimateurForm(request.POST)
             if form.is_valid():
                 form.save()
-                return redirect('catalogueESMT:acceuil')
+                return redirect('catalogueESMT:accueil')
         else:
             form = AnimateurForm()
     return render(request,'catalogueESMT/animateur/ajout_animateur.html',{'form':form})
+
+def ajout_formation(request):
+    connected_user = User.objects.get(pk=request.session['pk'])
+    if connected_user.user_type == 1:
+        print("Heyyy !!!")
+        if request.method == "POST":
+            form = FormationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('catalogueESMT:accueil')
+        else:
+            form = FormationForm()
+    return render(request,'catalogueESMT/formation/ajout_formation.html',{'form':form})
+
+def action_animateur(request):
+    connected_user = User.objects.get(pk=request.session['pk'])
+    if not (connected_user.user_type == 1):
+        redirect('catalogueESMT:accueil')
+    return render(request,'catalogueESMT/gestionnaire/action_animateur.html')
+
+def action_formation(request):
+    connected_user = User.objects.get(pk=request.session['pk'])
+    if not (connected_user.user_type == 1):
+        redirect('catalogueESMT:accueil')
+    return render(request,'catalogueESMT/gestionnaire/action_formations.html')
+
+def action_participant(request):
+    connected_user = User.objects.get(pk=request.session['pk'])
+    if not (connected_user.user_type == 1):
+        redirect('catalogueESMT:accueil')
+    return render(request,'catalogueESMT/gestionnaire/action_participant.html')

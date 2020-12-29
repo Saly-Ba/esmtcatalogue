@@ -1,2 +1,111 @@
-<h1>Bonzour !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>
-{{gestionnaire.user_type}}
+{% extends 'catalogueESMT/base.html'%}
+{% load static %}
+{% block navbar %}
+    <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'catalogueESMT:logout'%}" class="btn-large waves-effect waves-light button-per">Se deconnecter</a></li>
+    </ul>
+{% endblock %}
+{% block content %}
+<!-- Banner -->
+<section id="banner">
+    <h2>Bienvenue dans votre espace gestionnaire </h2>
+</section>
+
+<!-- One -->
+<section>
+        <header>
+            <h2 class="center">Choisissez vos actions :</h2>
+        </header>
+            <div class="row">
+                <div class="col s12 m6">
+                  <div class="card per-back">
+                    <div class="card-content white-text">
+                      <span class="card-title">Animateurs actions</span>
+                      <ul class="collection">
+                        <li class="collection-item avatar  per-back">
+                            <a href="{% url 'catalogueESMT:ajout_animateur' %}">
+                                <i class="medium material-icons circle blue">add</i>
+                            </a>
+                            <span class="title">Ajout</span>
+                            <p>Ajoutez des animateurs a la plateforme</p>
+                        </li>
+                        <li class="collection-item avatar  per-back">
+                            <a href="{% url 'catalogueESMT:ajout_animateur' %}">
+                                <i class="medium material-icons circle green">list</i>
+                            </a>
+                            <span class="title">Lister</span>
+                            <p>Listez tous les animateurs presents dans la base de donnees</p>
+                        </li>
+                        <li class="collection-item avatar  per-back">
+                            <a href="{% url 'catalogueESMT:ajout_animateur' %}">
+                                <i class="medium material-icons circle red">delete</i>
+                            </a>
+                            <span class="title">Supprimer</span>
+                            <p>supprimez des animateurs </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card per-back">
+                      <div class="card-content white-text">
+                        <span class="card-title">Participants actions</span>
+                        <ul class="collection">
+                          <li class="collection-item avatar per-back">
+                              <a href="{% url 'catalogueESMT:info_user' %}">
+                                  <i class="medium material-icons circle green">list</i>
+                              </a>
+                              <span class="title">Lister</span>
+                              <p>Listez tous les participants avec les formations qu'ils ont suivies</p>
+                          </li>
+                          <li class="collection-item avatar per-back">
+                              <a href="{% url 'catalogueESMT:info_user' %}">
+                                  <i class="medium material-icons circle red">delete</i>
+                              </a>
+                              <span class="title">Supprimer</span>
+                              <p>supprimez des participants </p>
+                          </li>
+                      </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s6 offset-s3">
+                    <div class="card per-back">
+                      <div class="card-content white-text">
+                        <span class="card-title">Formations actions</span>
+                        <ul class="collection">
+                          <li class="collection-item avatar per-back">
+                              <a href="{% url 'catalogueESMT:ajout_formation' %}">
+                                  <i class="medium material-icons circle blue">add</i>
+                              </a>
+                              <span class="title">Ajout</span>
+                              <p>Ajoutez des formations a la plateforme</p>
+                          </li>
+                          <li class="collection-item avatar per-back">
+                              <a href="{% url 'catalogueESMT:ajout_formation' %}">
+                                  <i class="medium material-icons circle green">list</i>
+                              </a>
+                              <span class="title">Lister</span>
+                              <p>Listez tous les formations présents dans la base de données</p>
+                          </li>
+                          <li class="collection-item avatar per-back">
+                              <a href="{% url 'catalogueESMT:ajout_formation' %}">
+                                  <i class="medium material-icons circle yellow">edit</i>
+                              </a>
+                              <span class="title">Modifier</span>
+                              <p>Modifiez les informations d'une formation donnée</p>
+                          </li>
+                          <li class="collection-item avatar per-back">
+                              <a href="{% url 'catalogueESMT:ajout_formation' %}">
+                                  <i class="medium material-icons circle red">delete</i>
+                              </a>
+                              <span class="title">Supprimer</span>
+                              <p>supprimez des formations </p>
+                          </li>
+                      </ul>
+                      </div>
+                    </div>
+                  </div>
+</section>
+{% endblock %}

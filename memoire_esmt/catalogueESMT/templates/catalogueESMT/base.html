@@ -7,6 +7,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.css'%}"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{% static 'css/style.css'%}"  media="screen,projection"/>
+    
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,8 +18,13 @@
     <nav class="white" role="navigation">
       <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo forma-logo">FormationESMT</a>
+        {% block navbar %}
+
+        {% endblock %}
         <ul class="right hide-on-med-and-down">
-          <li><a href="#" id="download-button" class="btn-large waves-effect waves-light button-per">Connexion</a></li>
+          <li>
+            <a href="#">Liste des formations</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -42,34 +48,24 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text">Company Bio</h5>
-            <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+            <h5 class="white-text">Project Bio</h5>
+            <p class="grey-text text-lighten-4">Dans le cadre de sa mission de développement et de vulgarisation des Télécommunications/TIC en Afrique, l’ESMT développe des sessions de formation continue. Sous forme de séminaires et d’ateliers, elles participent au perfectionnement des techniciens, ingénieurs et cadres des entreprises et institutions africaines.  </p>
   
   
           </div>
-          <div class="col l3 s12">
-            <h5 class="white-text">Settings</h5>
+          <div class="col l6 s12">
+            <h5 class="white-text">Apropos de l'ESMT</h5>
             <ul>
-              <li><a class="white-text" href="#!">Link 1</a></li>
-              <li><a class="white-text" href="#!">Link 2</a></li>
-              <li><a class="white-text" href="#!">Link 3</a></li>
-              <li><a class="white-text" href="#!">Link 4</a></li>
-            </ul>
-          </div>
-          <div class="col l3 s12">
-            <h5 class="white-text">Connect</h5>
-            <ul>
-              <li><a class="white-text" href="#!">Link 1</a></li>
-              <li><a class="white-text" href="#!">Link 2</a></li>
-              <li><a class="white-text" href="#!">Link 3</a></li>
-              <li><a class="white-text" href="#!">Link 4</a></li>
+              <li><a class="white-text" href="www.esmt.sn">Ecole Superieure Multinationale des Telecommunications</a></li>
+              <li><a class="white-text" href="https://www.linkedin.com/company/esmt-dakar/">LinkedIn ESMT</a></li>
+              <li><a class="white-text" href="https://web.facebook.com/ESMTSenegal">Facebook ESMT</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="footer-copyright">
         <div class="container">
-        Made by ...........
+        Made by a groupe of students
         </div>
       </div>
     </footer>
@@ -79,5 +75,9 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{% static 'js/materialize.js' %}"></script>
     <script src="{% static 'js/init.js'%}"></script>
+    <!--<script src="assets/js/jquery.min.js"></script>
+		<script src="{% static 'js/skel.min.js'%}"></script>
+		<script src="{% static 'js/util.js'%}"></script>
+		<script src="{% static 'js/main.js'%}"></script>-->
   </body>
 </html>
