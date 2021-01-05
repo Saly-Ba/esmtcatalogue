@@ -59,7 +59,11 @@ def afficher_info_user(request):
 
 #Animateurs Actions :
 def espace_animateur(request):
-    animateur = User.objects.get(pk=request.session['pk'])
+    if not ('pk' in request.session):
+        animateur = None
+        return redirect('catalogueESMT:login')
+    else :
+        animateur = User.objects.get(pk=request.session['pk'])
     return render(request,'catalogueESMT/animateur/espace_animateur.html',{'animateur':animateur})
 
 #Gestionnaire Actions :
@@ -81,28 +85,31 @@ def ajout_animateur(request):
     return render(request,'catalogueESMT/animateur/ajout_animateur.html',{'form':form})
 
 def ajout_formation(request):
-    connected_user = User.objects.get(pk=request.session['pk'])
-    if connected_user.user_type == 1:
-        print("Heyyy !!!")
-        if request.method == "POST":
-            form = FormationForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('catalogueESMT:accueil')
-        else:
-            form = FormationForm()
+    if not ('pk' in request.session):
+        return redirect('catalogueESMT:login')
+    else :
+        connected_user = User.objects.get(pk=request.session['pk'])
+        if connected_user.user_type == 1:
+            print("Heyyy !!!")
+            if request.method == "POST":
+                form = FormationForm(request.POST)
+                if form.is_valid():
+                    form.save()
+                    return redirect('catalogueESMT:accueil')
+            else:
+                form = FormationForm()
     return render(request,'catalogueESMT/formation/ajout_formation.html',{'form':form})
 
 def action_animateur(request):
     connected_user = User.objects.get(pk=request.session['pk'])
     if not (connected_user.user_type == 1):
-        redirect('catalogueESMT:accueil')
+        return redirect('catalogueESMT:accueil')
     return render(request,'catalogueESMT/gestionnaire/action_animateur.html')
 
 def action_formation(request):
     connected_user = User.objects.get(pk=request.session['pk'])
     if not (connected_user.user_type == 1):
-        redirect('catalogueESMT:accueil')
+        return redirect('catalogueESMT:accueil')
     return render(request,'catalogueESMT/gestionnaire/action_formations.html')
 
 def action_participant(request):

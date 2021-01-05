@@ -9,23 +9,22 @@ class User(AbstractUser):
 
 
 class Participant(User):
-    formations_suivies = models.ForeignKey("Formation",on_delete=models.CASCADE,null=True,blank=True)
-    #user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    formations_suivies = models.ManyToManyField("Formation",through="Participation",related_name="participants")
+    profession = models.CharField(max_length=50)
+    entreprise = models.CharField(max_length=50)
 
 class Gestionnaire(User):
-   # user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
    pass
 
 class Animateur(User):
-    #user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
-    pass
+    profession = models.CharField(max_length=50)
 
 class Formation(models.Model):
     intitule = models.CharField(max_length=50) 
     public_cible = models.CharField( max_length=90)
-    prerequis = models.CharField(max_length=255)
+    prerequis = models.ForeignKey("Formation",on_delete=models.CASCADE,null=True,blank=True)
     montant = models.IntegerField(default=0)
-    animateurs = models.ForeignKey("Animateur", on_delete=models.CASCADE,null=True,blank=True)
+    animateurs = models.ManyToManyField("Animateur", through="Animation",related_name="formations")
     fiche_programme = models.CharField(max_length=255)
     
     DOMAINE_A_CHOISIR = [(1,"Objets connectés"),(2,"Panorama des réseaux et services"),(3,"Réseaux mobiles et évolutions"),(4,"Multimédia et Audiovisuel"),
@@ -34,7 +33,6 @@ class Formation(models.Model):
                                     (13,"Cloud Computing & Virtualisation"),(14,"Big data"),(15,"Sécurité des Réseaux et des Systèmes d’Information"),(16,"Bases de Données et Applications"),
                                     (18,"Intelligence Artificielle"),(19,"Cyber Security"),(20,"Management de la transformation digitale"),]
     domaine_choisi = models.IntegerField(choices=DOMAINE_A_CHOISIR)
-    session = models.ForeignKey("Session", on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
         return self.intitule
@@ -43,6 +41,7 @@ class Session(models.Model):
     date = models.DateField()
     duree = models.IntegerField(default=0)
     lieu = models.CharField(max_length=50)
+    formation = models.ForeignKey("Formation",on_delete=models.CASCADE)
     
 
 class Avis(models.Model):
@@ -53,3 +52,14 @@ class Avis(models.Model):
     avis_formation = models.ForeignKey(Formation, on_delete=models.CASCADE,null=True,blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+class Participation(models.Model):
+    date_participation = models.DateField()
+    participant = models.ForeignKey("Participant",on_delete=models.CASCADE)
+    formation = models.ForeignKey("Formation",on_delete=models.CASCADE)
+
+class Animation(models.Model):
+    debut = models.DateField()
+    fin = models.DateField()
+    formation = models.ForeignKey("Formation",on_delete=models.CASCADE)
+    animateur = models.ForeignKey("Animateur",on_delete=models.CASCADE)
