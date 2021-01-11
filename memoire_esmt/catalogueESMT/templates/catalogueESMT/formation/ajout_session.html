@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
     <div class="col s6 offset-s3 center per-form">
-        <h2>Inscription :</h2>
+        <h2 class="light">Ajouter une session :</h2>
         <form action="" method="POST">
                 {% csrf_token %}
                 <div>
@@ -17,8 +17,25 @@
                 <div>
                     <label>Lieu :</label>
                     <input  name="lieu">
-                </div>                
+                </div>    
+                <div>
+                    <label>Formations :</label>
+                    <select>
+                        {% for formation in formations %}
+                            <option value="{{ formation }}">{{ formation }}</option>
+                        {% endfor %}
+                    </select>
+                </div>            
         </form>
+        {% if messages %}
+        <div>
+            <ul class="red-text">
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

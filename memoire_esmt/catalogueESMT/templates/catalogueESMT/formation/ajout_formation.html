@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
     <div class="col s6 offset-s3 center per-form">
-        <h2>Inscription :</h2>
+        <h2 class="light">Ajouter une formation :</h2>
         <form action="" method="POST">
                 {% csrf_token %}
                 <div>
@@ -24,8 +24,10 @@
                 </div>
                 <div>
                     <label>Animateurs :</label>
-                    <input name="animateurs">
-                </div>
+                    <select name="animateurs">
+                        <option>je suis la</option>
+                    </select>
+                </div>  
                 <div>
                     <label>Fiche de programme :</label>
                     <input type="text" name="fiche_programme">
@@ -34,11 +36,9 @@
                     <label>Domaine :</label>
                     <input type="text" name="domaine_choisi">
                 </div>
-                <div>
-                    <label>Sessions :</label>
-                    <input name="session">
-                </div>
-                
+                <button class="btn-floating waves-effect waves-light btn per-back-green" type="submit" name="action">
+                    <i class="material-icons">create</i>
+                </button>
         </form>
     </div>
 </div>
