@@ -82,7 +82,10 @@ def liste_formation(request):
 
 #Gestionnaire Actions :
 def espace_gestionnaire(request):
-    gestionnaire = User.objects.get(pk=request.session['pk'])
+    if not ('pk' in request.session):
+        return redirect('catalogueESMT:login')
+    else:
+        gestionnaire = User.objects.get(pk=request.session['pk'])
     return render(request,'catalogueESMT/gestionnaire/espace_gestionnaire.html',{'gestionnaire':gestionnaire})
         
 def ajout_animateur(request):
@@ -109,6 +112,7 @@ def ajout_formation(request):
         connected_user = User.objects.get(pk=request.session['pk'])
         if connected_user.user_type == 1:
             animateurs = Animateur.objects.all()
+            formations = Formation.objects.all()
             if animateurs.exists():
                 if request.method == "POST":
                     form = FormationForm(request.POST)
@@ -118,10 +122,11 @@ def ajout_formation(request):
                 else:
                     form = FormationForm()
             else:
-                messages.error(request,'Aucun animateurs n\'est encours present dans votre base de donnees')
+                form = FormationForm()
+                messages.error(request,'Aucun animateurs n\'est encore present dans votre base de donnees')
         else:
             return redirect('catalogueESMT:accueil')
-    return render(request,'catalogueESMT/formation/ajout_formation.html',{'form':form, 'animateurs':animateurs})
+    return render(request,'catalogueESMT/formation/ajout_formation.html',{'form':form, 'animateurs':animateurs, 'formations':formations})
 
 def ajout_session(request):
     if not ('pk' in request.session):
@@ -139,7 +144,7 @@ def ajout_session(request):
                 else :
                     form = SessionForm()
             else:
-                messages.error(request,'Il y\' a, pour le moment, aucune formation enregistrer dans votre base de données')
+                messages.error(request,'Il n\'y a, pour le moment, aucune formation enregistrer dans votre base de données')
         else:
             return redirect('catalogueESMT:accueil')
     return render(request,'catalogueESMT/formation/ajout_session.html',{'formations':formations})

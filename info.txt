@@ -12,3 +12,4 @@ password : gestionnaire@test
 username : admin
 password : passer
 
+animateur@test

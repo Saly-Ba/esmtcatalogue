@@ -6,40 +6,20 @@
         <h2 class="light">Ajouter une formation :</h2>
         <form action="" method="POST">
                 {% csrf_token %}
-                <div>
-                    <label>Intitule :</label>
-                    <input type="text" name="intitule">
-                </div>
-                <div>
-                    <label>Public Cible :</label>
-                    <input type="text" name="public_cible">
-                </div>
-                <div>
-                    <label>Pre-requis :</label>
-                    <input  name="prerequis">
-                </div>
-                <div>
-                    <label>Montant :</label>
-                    <input type="number" name="montant">
-                </div>
-                <div>
-                    <label>Animateurs :</label>
-                    <select name="animateurs">
-                        <option>je suis la</option>
-                    </select>
-                </div>  
-                <div>
-                    <label>Fiche de programme :</label>
-                    <input type="text" name="fiche_programme">
-                </div>
-                <div>
-                    <label>Domaine :</label>
-                    <input type="text" name="domaine_choisi">
-                </div>
+                {{form.as_p}}
                 <button class="btn-floating waves-effect waves-light btn per-back-green" type="submit" name="action">
                     <i class="material-icons">create</i>
                 </button>
         </form>
+        {% if messages %}
+        <div>
+            <ul class="red-text">
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

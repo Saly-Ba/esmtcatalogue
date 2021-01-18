@@ -20,12 +20,15 @@
                 </div>    
                 <div>
                     <label>Formations :</label>
-                    <select>
+                    <select name="formation">
                         {% for formation in formations %}
                             <option value="{{ formation }}">{{ formation }}</option>
                         {% endfor %}
                     </select>
-                </div>            
+                </div>
+                <button class="btn-floating waves-effect waves-light btn per-back-green" type="submit" name="action">
+                    <i class="material-icons">create</i>
+                </button>            
         </form>
         {% if messages %}
         <div>
