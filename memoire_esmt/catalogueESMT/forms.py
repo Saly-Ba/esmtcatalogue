@@ -4,7 +4,7 @@ from .models import Formation, Participant, Gestionnaire, Animateur,Avis,Session
 class FormationForm(forms.ModelForm):
     class Meta:
         model = Formation
-        exclude = ('pk','session')
+        exclude = ('pk',)
 
 class ParticipantForm(forms.ModelForm):
     class Meta:
@@ -26,3 +26,17 @@ class SessionForm(forms.ModelForm):
         model = Session
         exclude = ('pk',)
 
+class AnimationForm(forms.ModelForm):
+    class Meta:
+        model = Animation
+        fields = ('debut','fin')
+
+class ParticipationForm(forms.ModelForm):
+    class Meta:
+        model = Participation
+        exclude = ('pk',)
+
+class AvisForm(forms.ModelForm):
+    class Meta:
+        model = Avis
+        exclude = ('pk',)

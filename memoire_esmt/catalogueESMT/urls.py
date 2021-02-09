@@ -16,6 +16,7 @@ urlpatterns = [
     path('gestion/animateur/ajout',views.ajout_animateur,name="ajout_animateur"),
     path('gestion/formation',views.action_formation,name="action_formation"),
     path('gestion/formation/ajout',views.ajout_formation,name="ajout_formation"),
+    path('liste_formation',views.liste_formation,name="liste_formation"),
     path('gestion/formation/ajout-session',views.ajout_session,name="ajout_session"),
     path('gestion/participant',views.action_participant,name="action_participant"),
 

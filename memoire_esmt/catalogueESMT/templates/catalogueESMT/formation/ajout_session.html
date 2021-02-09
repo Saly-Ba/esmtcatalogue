@@ -22,7 +22,7 @@
                     <label>Formations :</label>
                     <select name="formation">
                         {% for formation in formations %}
-                            <option value="{{ formation }}">{{ formation }}</option>
+                            <option value="{{ formation.pk }}">{{ formation }}</option>
                         {% endfor %}
                     </select>
                 </div>

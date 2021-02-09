@@ -1,0 +1,17 @@
+{% extends 'catalogueESMT/base.html'%}
+{% load static %}
+{% block navbar %}
+    <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'catalogueESMT:logout'%}" class="btn-large waves-effect waves-light button-per">Se deconnecter</a></li>
+    </ul>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col s12 m3">
+        <div class="card svg_background">
+            
+        </div>
+    </div>
+
+</div>
+{% endblock %}

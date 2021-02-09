@@ -22,7 +22,7 @@ class Animateur(User):
 class Formation(models.Model):
     intitule = models.CharField(max_length=50) 
     public_cible = models.CharField( max_length=90)
-    prerequis = models.ForeignKey("Formation",on_delete=models.CASCADE,null=True,blank=True)
+    prerequis = models.CharField(max_length=255,null=True)
     montant = models.IntegerField(default=0)
     animateurs = models.ManyToManyField("Animateur", through="Animation",related_name="formations")
     fiche_programme = models.CharField(max_length=255)
@@ -45,7 +45,7 @@ class Session(models.Model):
     
 
 class Avis(models.Model):
-    #Une table associative en la table Participant et celle de Formation
+    #Une table associative entre la table Participant et celle de Formation
     commentaire = models.CharField(max_length=50,default="")
     note = models.IntegerField(default=0)
     avis_participant = models.ForeignKey(Participant, on_delete=models.CASCADE,null=True,blank=True)
@@ -59,7 +59,7 @@ class Participation(models.Model):
     formation = models.ForeignKey("Formation",on_delete=models.CASCADE)
 
 class Animation(models.Model):
-    debut = models.DateField()
-    fin = models.DateField()
+    debut = models.DateField(null=True,blank=True)
+    fin = models.DateField(null=True,blank=True)
     formation = models.ForeignKey("Formation",on_delete=models.CASCADE)
     animateur = models.ForeignKey("Animateur",on_delete=models.CASCADE)

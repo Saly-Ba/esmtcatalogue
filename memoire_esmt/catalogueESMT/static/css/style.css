@@ -109,6 +109,12 @@ footer.page-footer {
   width: 40%;
 }
 
+.svg_background{
+  background-image: url("../ressource/formation_background_1.svg");
+  width: 300px;
+  height: 200px;
+}
+
 
 
 
