@@ -95,10 +95,12 @@ def espace_animateur(request):
 
 #Formations Actions:
 def liste_formation(request):
+    formations = set()
     periode = datetime.datetime.now().year
     sessions = Session.objects.filter(date__year=periode)
     for i in sessions :
-        formations = Formation.objects.filter(pk=i.formation.pk)
+        formations.add(Formation.objects.get(pk=i.formation.pk))
+        print(formations)
     return render(request,'catalogueESMT/formation/lister_formation.html',{'formations':formations, 'sessions':sessions})
 
 #Gestionnaire Actions :
