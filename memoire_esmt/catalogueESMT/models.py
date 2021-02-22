@@ -22,7 +22,7 @@ class Animateur(User):
 class Formation(models.Model):
     intitule = models.CharField(max_length=50) 
     public_cible = models.CharField( max_length=90)
-    prerequis = models.CharField(max_length=255,null=True)
+    prerequis = models.CharField(max_length=255,null=True,blank=True)
     montant = models.IntegerField(default=0)
     animateurs = models.ManyToManyField("Animateur", through="Animation",related_name="formations")
     fiche_programme = models.CharField(max_length=255)

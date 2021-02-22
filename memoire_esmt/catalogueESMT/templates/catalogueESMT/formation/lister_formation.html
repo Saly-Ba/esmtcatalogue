@@ -13,7 +13,7 @@
                 <div class="card-content">
                     <span class="card-title">{{ formation.intitule }}</span>
                     <div class="row">
-                            <span class="col s6 left">Publique cible : {{ formation.public_cible }}</span>
+                            <span class="col s6 left">Public cible : {{ formation.public_cible }}</span>
                             <span class="col s6 ">Montant : {{ formation.montant }}</span>
                     </div>
                     <div class="row">
@@ -31,8 +31,26 @@
                             {% endif %}
                     </div>
                     <div class="row">
-                        <span class="col s12">Animateurs : {{ formation.animateurs}}</span>
+                        <span class="col s12">Animateurs : 
+                        {% for k,v in animateurs.items %}
+                            {% if k == formation%}
+                                {% for animateur in v %}
+                                    {{ animateur.first_name }} {{ animateur.last_name }},
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                        </span>
                     </div>
+                    <div class="row">
+                        <span class="col s12">Sessions : 
+                            {% for session in sessions%}
+                                {% if session.formation == formation %}
+                                    {{ session.date }}; 
+                                {% endif %}
+                            {% endfor %}
+                        </span>
+                    </div>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                 </div>
             </div>
         </div>

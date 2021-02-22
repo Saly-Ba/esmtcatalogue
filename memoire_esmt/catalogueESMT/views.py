@@ -96,12 +96,16 @@ def espace_animateur(request):
 #Formations Actions:
 def liste_formation(request):
     formations = set()
+    animateurs_dict = dict()
     periode = datetime.datetime.now().year
     sessions = Session.objects.filter(date__year=periode)
     for i in sessions :
         formations.add(Formation.objects.get(pk=i.formation.pk))
-        print(formations)
-    return render(request,'catalogueESMT/formation/lister_formation.html',{'formations':formations, 'sessions':sessions})
+
+    for i in formations:
+        animateurs_dict[i]= i.animateurs.all()
+    
+    return render(request,'catalogueESMT/formation/lister_formation.html',{'formations':formations, 'sessions':sessions, 'animateurs':animateurs_dict})
 
 #Gestionnaire Actions :
 @logged_verif
